@@ -1,0 +1,21 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: gochat
+spec:
+  replicas: 3
+  selector:
+    matchLabels:
+      app: gochat
+  # template 描述的是你的pod是什么样的
+  template:
+    metadata:
+      name: gochat
+      labels:
+        app: gochat
+    # pod的具体信息
+    spec:
+      containers:
+        - name: gochat
+          image: zgf/gochat:v0.0.1
+
