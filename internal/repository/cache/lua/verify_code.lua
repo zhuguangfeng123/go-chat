@@ -6,7 +6,7 @@ local code = redis.call("get", key)
 
 --转成一个数字
 local cnt = tonumber(redis.call("get", "phone_code:login:18860313695:cnt"))
-if cnt <= 0 then
+if cnt == nil or cnt <= 0 then
     --用户一直输错
     return -1
 elseif expectedCode == code then

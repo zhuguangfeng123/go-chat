@@ -7,6 +7,7 @@ import (
 	dtov1 "github.com/zhuguangfeng123/go-chat/internal/dto/v1"
 	userSvc "github.com/zhuguangfeng123/go-chat/internal/service/user"
 	"github.com/zhuguangfeng123/go-chat/pkg/ginx/result"
+	"strings"
 )
 
 // UserSignup 用户注册
@@ -26,6 +27,7 @@ func (hdl *UserHandler) UserSignup(ctx *gin.Context, req dtov1.UserSignupReq) {
 		result.Failed(ctx, -1, "系统错误")
 		return
 	}
+	a := strings.Split("1 a", "")
 	if !ok {
 		result.Failed(ctx, -1, "密码格式有误")
 		return

@@ -11,7 +11,7 @@ const (
 
 const (
 	UserStatusUnknown uint = iota
-	UserStatusNormal       //正常
+	UserStatusNormal       //正常/
 	UserStatusBan          //封禁
 )
 

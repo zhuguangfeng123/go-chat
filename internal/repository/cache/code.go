@@ -42,7 +42,7 @@ func NewCodeCache(client redis.Cmdable) CodeCache {
 
 // SetCode 设置验证码
 func (cache *RedisCodeCache) SetCode(ctx context.Context, biz, phone, code string) error {
-	res, err := cache.client.Eval(ctx, luaSetCode, []string{cache.getKey(biz, phone)}, code).Int()
+	res, err := cache.client.Eval(ctx, luaSetCode, []string{cache.getKey(biz, phone)}, []string{code}).Int()
 	if err != nil {
 		return err
 	}

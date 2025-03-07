@@ -6,7 +6,6 @@ import (
 	dtov1 "github.com/zhuguangfeng123/go-chat/internal/dto/v1"
 	iJwt "github.com/zhuguangfeng123/go-chat/internal/handler/jwt"
 	"github.com/zhuguangfeng123/go-chat/internal/service/code"
-	"github.com/zhuguangfeng123/go-chat/internal/service/sms"
 	"github.com/zhuguangfeng123/go-chat/internal/service/user"
 	"github.com/zhuguangfeng123/go-chat/pkg/ginx"
 )
@@ -16,11 +15,10 @@ type UserHandler struct {
 	passwordExp *regexp.Regexp
 	iJwt.JwtHandler
 	userSvc user.UserService
-	smsSvc  sms.Service
 	codeSvc code.CodeService
 }
 
-func NewUserHandler(jwtHandler iJwt.JwtHandler, userSvc user.UserService, smsSvc sms.Service, codeSvc code.CodeService) *UserHandler {
+func NewUserHandler(jwtHandler iJwt.JwtHandler, userSvc user.UserService, codeSvc code.CodeService) *UserHandler {
 	const (
 		phoneRegexPattern    = `^1[3-9]\d{9}$`
 		passwordRegexPattern = `^(?=.*[A-Za-z])(?=.*\d)[A-Za-z\d]{8,32}$`
@@ -31,7 +29,6 @@ func NewUserHandler(jwtHandler iJwt.JwtHandler, userSvc user.UserService, smsSvc
 		passwordExp: regexp.MustCompile(passwordRegexPattern, regexp.None),
 		JwtHandler:  jwtHandler,
 		userSvc:     userSvc,
-		smsSvc:      smsSvc,
 		codeSvc:     codeSvc,
 	}
 }
